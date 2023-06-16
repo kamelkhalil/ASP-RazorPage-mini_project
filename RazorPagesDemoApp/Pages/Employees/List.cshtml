@@ -1,0 +1,62 @@
+﻿@page
+@model RazorPagesDemoApp.Pages.Employees.ListModel
+@{
+    ViewData["Title"] = "List Of Employees";
+}
+
+<div class="container">
+    <h1 class="mb-3">@ViewData["Title"]</h1>
+    @if (Model.Employees != null && Model.Employees.Any())
+    {
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Increased the column size to col-md-8 -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Full Name</th>
+                            <th>Email Address</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var employee in Model.Employees)
+                        {
+                            <tr>
+                                <td>@employee.Id</td>
+                                <td>@employee.Full_Name</td>
+                                <td>@employee.Email_Address</td>
+                                <td>
+                                    <a href="/Employees/Edit/@employee.Id" class="btn btn-dark">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <!-- Kept the column size as col-md-4 for the image -->
+                <img src="~/images/List-employee.png" alt="List Employee" class="img-fluid img-list">
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p class="mb-0">No employees found!</p>
+        </div>
+    }
+</div>
+
+<style>
+    .img-list {
+        max-width: 220px; /* Increased the max-width to make the image larger */
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        float: right;
+    }
+
+    
+</style>
